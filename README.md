@@ -19,6 +19,23 @@ the parts can be instructional.
 
 ## How to use this repository
 
+Before you go into tests, you may consider running a real cluster. For that open 3 terminals and set there RAFT_ID to unique value from 0 to 2:
+```
+export RAFT_ID=0 # 1 2
+export RAFT_CLUSTER=localhost:12321,localhost:12322,localhost:12323
+cd main
+go run server.go
+```
+
+Then in another terminal:
+```
+cd main
+for i in 1 2 3
+do
+go run client.go localhost:1232$i 42 55 81
+done
+```
+
 You can read the code, but I'd also encourage you to run tests and observe the
 logs they print out. The repository contains a useful tool for visualizing
 output. Here's a complete usage example:
