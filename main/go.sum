@@ -1,0 +1,4 @@
+github.com/fortytw2/leaktest v1.3.0 h1:u8491cBMTQ8ft8aeV+adlcytMZylmA5nnwwkRZjI8vw=
+github.com/fortytw2/leaktest v1.3.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
+github.com/yesmanchyk/go-raft/part2 v0.0.0-20240418172722-e1c069b6ce55 h1:bbWe9/tIX5UktPrFoTNV0QMrcg+CVTnAFFoxulbkrbk=
+github.com/yesmanchyk/go-raft/part2 v0.0.0-20240418172722-e1c069b6ce55/go.mod h1:t3DYJfDYsODtuO/sTciM6HOkcL7YRHybOjdH2r09ymg=
