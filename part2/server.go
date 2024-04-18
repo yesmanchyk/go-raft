@@ -204,3 +204,11 @@ func (rpp *RPCProxy) AppendEntries(args AppendEntriesArgs, reply *AppendEntriesR
 	}
 	return rpp.cm.AppendEntries(args, reply)
 }
+
+func (rpp *RPCProxy) RequestReport(args ReportArgs, reply *ReportReply) error {
+	return rpp.cm.RequestReport(args, reply)
+}
+
+func (rpp *RPCProxy) SubmitCommand(args SubmitArgs, reply *SubmitReply) error {
+	return rpp.cm.SubmitCommand(args, reply)
+}

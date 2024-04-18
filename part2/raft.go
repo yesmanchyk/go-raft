@@ -137,6 +137,26 @@ func (cm *ConsensusModule) Report() (id int, term int, isLeader bool) {
 	return cm.id, cm.currentTerm, cm.state == Leader
 }
 
+type ReportArgs struct {
+	Id int
+}
+
+type ReportReply struct {
+	Id int
+	Term int
+	IsLeader bool
+}
+
+func (cm *ConsensusModule) RequestReport(args ReportArgs, reply *ReportReply) error {
+	cm.mu.Lock()
+	defer cm.mu.Unlock()
+	cm.dlog("RequestReport: %+v [currentTerm=%d, state=%d]", args, cm.currentTerm, cm.state)
+	reply.Id = cm.id
+	reply.Term = cm.currentTerm
+	reply.IsLeader = cm.state == Leader
+	return nil
+}
+
 // Submit submits a new command to the CM. This function doesn't block; clients
 // read the commit channel passed in the constructor to be notified of new
 // committed entries. It returns true iff this CM is the leader - in which case
@@ -153,6 +173,19 @@ func (cm *ConsensusModule) Submit(command interface{}) bool {
 		return true
 	}
 	return false
+}
+
+type SubmitArgs struct {
+	Command interface{}
+}
+
+type SubmitReply struct {
+	IsLeader bool
+}
+
+func (cm *ConsensusModule) SubmitCommand(args SubmitArgs, reply *SubmitReply) error {
+	reply.IsLeader = cm.Submit(args.Command)
+	return nil
 }
 
 // Stop stops this CM, cleaning up its state. This method returns quickly, but
